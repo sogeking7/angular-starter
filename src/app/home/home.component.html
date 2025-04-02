@@ -1,0 +1,19 @@
+<main class="container mx-auto flex gap-6 flex-col">
+	<div>
+		<h1 class="text-xl text-amber-500">
+			Hello World ! {{ city }} {{ 1 + 1 }}
+		</h1>
+		@defer (on viewport) {
+		<app-comments />
+		} @placeholder {
+		<p>Future comments</p>
+		} @loading (minimum 2s) {
+		<p>Loading comments...</p>
+		}
+	</div>
+	<nav>
+		<a routerLink="/about">About</a>
+		|
+		<a routerLink="/user">User</a>
+	</nav>
+</main>

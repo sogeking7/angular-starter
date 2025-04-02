@@ -1,0 +1,68 @@
+<div>
+	@if (user) {
+	<h1>Hello {{ user.username }} !</h1>
+	} @else {
+	<p>You must to log in</p>
+	}
+	<h3 class="text-2xl font-medium">Operating system</h3>
+	<ul>
+		@for (os of operatingSystems; track os.id) {
+		<li>{{ os.name }}</li>
+		}
+	</ul>
+	<h3 class="text-2xl font-medium">Users</h3>
+	<ul>
+		@for (user of users; track user.id) {
+		<li>{{ user.name }}</li>
+		}
+	</ul>
+	<div [contentEditable]="isEditable">asdf asdfasdfasdfasdf</div>
+	<section [class]="
+        (message ? 'bg-blue-500' : 'bg-red-500') +
+        ' p-4 font-bold w-max text-white'
+      " (mouseout)="onMouseLeave()" (mouseover)="onMouseOver()">
+		Hover Me {{ message }}
+	</section>
+	<p>I am a <span class="text-red-500 font-bold">{{ occupation }}</span></p>
+
+	<p>
+		{{user?.username}}'s favorite framework:
+		<span class="text-red-500">
+			{{form.favoriteFramework}}
+		</span>
+	</p>
+	<label for="framework">
+		Favorite Framework:
+		<input class="border" id="framework" type="text" [(ngModel)]="form.favoriteFramework" />
+	</label>
+	<button class="bg-green-500" (click)="showFramework()">
+		Show framework
+	</button>
+
+	<form [formGroup]="profileForm" (ngSubmit)="handleSubmit()">
+		<label>
+			Name
+			<input type="text" formControlName="name" />
+		</label>
+		<label>
+			Email
+			<input type="email" formControlName="email" />
+		</label>
+		<button [disabled]="!profileForm.valid" type="submit">Submit</button>
+	</form>
+
+
+	<h2>Profile Form</h2>
+	<p>Name: {{profileForm.value.name}}</p>
+	<p>Email: {{profileForm.value.email}}</p>
+
+	<!-- <p>{{userService.getCars()}}</p> -->
+	<p>{{display}}</p>
+
+	<p>{{user?.username | lowercase}}</p>
+	<p>{{user?.username | uppercase }}</p>
+	<p>Birthday: {{user?.birthday | date}}</p>
+	<p>PI: {{user?.pi | number }}</p>
+	<p>Currency: {{user?.money | currency: 'JPY' : 'symbol': '1.2-3'}}</p>
+	<p>{{user?.username | reverse}}</p>
+</div>
